@@ -1,0 +1,30 @@
+<!-- start.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      background: transparent;
+    }
+    #startBtn {
+      font-size: 16px;
+      background: green;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <button id="startBtn">▶️ Start</button>
+  <script>
+    const { ipcRenderer } = require('electron');
+    document.getElementById('startBtn').onclick = () => {
+      ipcRenderer.send('start-recording-flow');
+    };
+  </script>
+</body>
+</html>

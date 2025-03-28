@@ -1,16 +1,39 @@
 {
   "name": "scrn-rcrdr",
   "version": "1.0.0",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
+"main": "main.js",
+"build": {
+  "appId": "scrn-rcrdr",
+  "productName": "Scrn Rcrdr",
+  "files": [
+    "**/*",
+    "!clips/**"
+  ],
+  "extraResources": [
+    {
+      "from": "node_modules/@ffmpeg-installer/win32-x64/ffmpeg.exe",
+      "to": "ffmpeg/ffmpeg.exe"
+    }
+  ],
+  "win": {
+    "icon": "build/icon.ico",
+    "target": "nsis"
+  }
+},
+"scripts": {
+  "start": "electron .",
+  "build": "electron-builder"
+},
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "electron": "^35.1.2",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "electron-localshortcut": "^3.2.1",
     "execa": "^9.5.2"
+  },
+  "devDependencies": {
+    "electron": "^35.1.2",
+    "electron-builder": "^26.0.12"
   }
 }

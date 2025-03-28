@@ -1,9 +1,10 @@
+<img src="./scrn-rcrdr.png" width="200" style="margin: 20px auto; display: block;"/>
+
 # 🎥 Scrn Rcrdr
 
 A lightweight, cross-platform desktop screen recorder built with [Electron](https://www.electronjs.org/) and [FFmpeg](https://ffmpeg.org/).  
 Drag-select an area of your screen, record instantly, and save high-quality MP4 video clips.
 
-![screenshot](./scrn-rcrdr.png)
 
 ---
 

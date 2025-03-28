@@ -28,8 +28,8 @@ document.body.addEventListener('mousemove', (e) => {
   const y = Math.min(e.clientY, startY);
   const w = Math.abs(e.clientX - startX);
   const h = Math.abs(e.clientY - startY);
-  selection.style.left = `${x}px`;
-  selection.style.top = `${y}px`;
+  selection.style.left = `${x + 1}px`;
+  selection.style.top = `${y + 1}px`;
   selection.style.width = `${w}px`;
   selection.style.height = `${h}px`;
 });

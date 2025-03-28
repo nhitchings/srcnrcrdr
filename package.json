@@ -1,39 +1,46 @@
 {
   "name": "scrn-rcrdr",
   "version": "1.0.0",
-"main": "main.js",
-"build": {
-  "appId": "scrn-rcrdr",
-  "productName": "Scrn Rcrdr",
-  "files": [
-    "**/*",
-    "!clips/**"
-  ],
-  "extraResources": [
-    {
-      "from": "node_modules/@ffmpeg-installer/win32-x64/ffmpeg.exe",
-      "to": "ffmpeg/ffmpeg.exe"
-    }
-  ],
-  "win": {
-    "icon": "build/icon.ico",
-    "target": "nsis"
-  }
-},
+  "main": "main.js",
 "scripts": {
   "start": "electron .",
-  "build": "electron-builder"
+  "build": "electron-builder",
+  "dist": "electron-builder --win nsis --x64"
 },
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "@ffmpeg-installer/ffmpeg": "^1.1.0",
-    "electron-localshortcut": "^3.2.1",
-    "execa": "^9.5.2"
-  },
   "devDependencies": {
-    "electron": "^35.1.2",
+    "electron": "^25.8.3",
     "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "electron-localshortcut": "^3.2.1"
+  },
+  "build": {
+    "appId": "com.scrnrcrdr.app",
+    "productName": "Scrn Rcrdr",
+    "copyright": "Copyright © 2025 Nathan Hitchings",
+    "win": {
+      "icon": "build/icon.ico",
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Scrn Rcrdr"
+    },
+    "extraResources": [
+      {
+        "from": "node_modules/@ffmpeg-installer/win32-x64/ffmpeg.exe",
+        "to": "ffmpeg/ffmpeg.exe"
+      },
+      {
+        "from": "build/icon.ico",
+        "to": "icon.ico"
+      }
+    ],
+    "files": [
+      "**/*",
+      "!clips/**"
+    ]
   }
 }

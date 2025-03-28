@@ -3,7 +3,6 @@ const path = require('path');
 const fs = require('fs');
 const { spawn } = require('child_process');
 const localShortcut = require('electron-localshortcut');
-const ffmpegInstaller = require('@ffmpeg-installer/ffmpeg');
 
 const isDev = !app.isPackaged;
 const ffmpegPath = isDev
@@ -16,9 +15,15 @@ let tray = null;
 let recorderProcess = null;
 let currentMKVPath = null;
 
-const outputDir = path.join(app.getPath('videos'), 'ScreenClips');
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir, { recursive: true });
+const outputDir = path.join(app.getPath('videos'), 'ScrnRcrdr');
+
+try {
+  if (!fs.existsSync(outputDir) || !fs.statSync(outputDir).isDirectory()) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+} catch (err) {
+  console.error('❌ Failed to create output directory:', outputDir);
+  console.error(err);
 }
 
 function roundToEven(n) {
@@ -228,7 +233,7 @@ function convertMKVtoMP4(mkvPath, mp4Path) {
 }
 
 function createTray() {
-  const iconPath = path.join(__dirname, 'icon.ico');
+  const iconPath = path.join(process.resourcesPath, 'icon.ico');
   tray = new Tray(iconPath);
   const menu = Menu.buildFromTemplate([
     { label: 'Start Recording', click: createOverlayWindow },
